@@ -1,0 +1,321 @@
+
+
+
+    .footer {
+        width: 100%;
+        background-color: #232f3e;
+        padding-top: 50px;
+        padding-left: 5%;
+        padding-right: 5%;
+        display: flex;
+        flex-direction: column;
+
+        .footer_group {
+            width: 100%;
+
+            .footer_subscribe {
+                color: white;
+                margin-bottom: 30px;
+
+                .footer_subscribe_text {
+                    margin-top: 20px;
+                }
+
+                .footer_subscribe_form {
+                    margin-top: 30px;
+
+                    .footer_subscribe_form_control {
+                        .footer_subscribe_form_control_input {}
+
+                        .footer_subscribe_form_control_label {}
+
+                        .footer_subscribe_form_control_button {
+                            .footer_subscribe_form_control_btn {}
+                        }
+                    }
+                }
+
+                /* 邮箱输入框样式 */
+                .email-container {
+                    display: flex;
+                    background: transparent;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    height: 50px;
+                    border: 1px solid #eee;
+                    margin-top: 20px;
+
+                    .email-label {
+                        display: flex;
+                        align-items: center;
+                        padding: 0 30px;
+                        background: rgba(52, 152, 219, 0.1);
+                        color: #3498db;
+                        font-weight: 600;
+                        font-size: 1.1rem;
+                        letter-spacing: 1px;
+                    }
+
+                    .email-input {
+                        flex: 1;
+                        border: none;
+                        padding: 0 20px;
+                        font-size: 1.1rem;
+                        color: white;
+                        outline: none;
+                        transition: all 0.3s ease;
+                        background: transparent;
+                    }
+
+                    .email-input:focus {
+                        /* background: #f8f9fa; */
+                        /* border: 2px solid white; */
+                    }
+
+                    .email-input::placeholder {
+                        color: #95a5a6;
+                        font-weight: 300;
+                    }
+
+                    .submit-btn {
+                        width: 30px;
+                        height: 30px;
+                        background: #febd69;
+                        border: none;
+                        cursor: pointer;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        transition: background 0.3s ease;
+                        color: #2c3e50;
+                        border-radius: 30px;
+                        margin-right: 10px;
+                        margin-top: 8px;
+                    }
+
+                    .submit-btn:hover {
+                        background: white;
+                    }
+
+                    .submit-btn svg {
+                        width: 30px;
+                        height: 30px;
+                        fill: #2c3e50;
+                    }
+                }
+            }
+
+
+
+
+
+
+            .footer_contract {
+                display: flex;
+                flex-direction: column;
+
+                .bold {
+                    color: white;
+                }
+
+                .footer_contract_text {
+                    color: #999;
+                }
+            }
+
+
+
+            .footer_block {
+                width: 10%;
+            }
+        }
+
+
+        .footer_aside {
+            display: flex;
+            width: 100%;
+
+            .footer_payment_icons {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .footer_copyright {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+    }
+
+
+ /* mobile */
+    @media (max-width: 768px) {
+        .footer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .footer_group {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                .footer_subscribe {
+
+                    .h3 {
+                        font-size: 22px;
+                        font-weight: 600;
+                    }
+
+                    .footer_subscribe_text {
+                        font-size: 14px;
+                    }
+
+
+                    /* 邮箱输入框样式 */
+                    .email-container {
+
+                        height: 50px;
+                        margin-top: 20px;
+
+                        .submit-btn {
+
+                            margin-right: 10px;
+                            margin-top: 8px;
+                        }
+                    }
+
+
+
+                }
+
+
+                .footer_contract {
+                    .bold {
+                        font-size: 18px;
+                        font-weight: 600;
+                    }
+                }
+
+
+            }
+
+            .footer_aside {
+                flex-direction: column;
+                margin-bottom: 100px;
+                margin-top: 30px;
+
+                .footer_payment_icons {
+                    margin-bottom: 20px;
+                    
+                }
+
+
+                .footer_copyright {
+                    .footer_copyright_subdued {}
+
+                    .footer_copyright_policy_links {
+                        display: flex;
+                        flex-wrap: wrap;
+
+
+                        .contents {
+                            display: flex;
+
+                            .link-faded {
+                                color: #999;
+                                margin-right: 20px;
+                                font-size: 12px;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+
+/* Web */
+    @media (min-width: 768px) {
+        .footer {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .footer_group {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                .footer_subscribe {
+
+                    .h3 {
+                        font-size: 36px;
+                        font-weight: 600;
+                    }
+
+                    .footer_subscribe_text {
+                        font-size: 18px;
+
+                    }
+
+                    /* 邮箱输入框样式 */
+                    .email-container {
+
+                        height: 70px;
+                        margin-top: 30px;
+
+                        .submit-btn {
+
+                            margin-right: 20px;
+                            margin-top: 18px;
+                        }
+                    }
+
+                }
+
+                .footer_contract {
+                    .bold {
+                        font-size: 30px;
+                        font-weight: 600;
+                    }
+                }
+
+
+            }
+
+            .footer_aside {
+                flex-direction: row-reverse;
+                justify-content: space-between;
+                margin-bottom: 70px;
+
+
+                .footer_payment_icons {
+                    margin-top: 0px;
+                    .contents{
+                        margin-right: 10px;
+                    }
+                }
+
+                .footer_copyright {
+                    margin-top: 80px;
+                    .footer_copyright_subdued {}
+
+                    .footer_copyright_policy_links {
+                        display: flex;
+
+
+                        .contents {
+                            .link-faded {
+                                color: #999;
+                                margin-right: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
