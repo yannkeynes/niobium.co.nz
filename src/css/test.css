@@ -1,0 +1,393 @@
+:root {
+    --spacing-0-5: 0.125rem;
+    --spacing-1: 0.25rem;
+    --spacing-1-5: 0.375rem;
+    --spacing-2: 0.5rem;
+    --spacing-2-5: 0.625rem;
+    --spacing-3: 0.75rem;
+    --spacing-3-5: 0.875rem;
+    --spacing-4: 1rem;
+    --spacing-4-5: 1.125rem;
+    --spacing-5: 1.25rem;
+    --spacing-5-5: 1.375rem;
+    --spacing-6: 1.5rem;
+    --spacing-6-5: 1.625rem;
+    --spacing-7: 1.75rem;
+    --spacing-7-5: 1.875rem;
+    --spacing-8: 2rem;
+    --spacing-8-5: 2.125rem;
+    --spacing-9: 2.25rem;
+    --spacing-9-5: 2.375rem;
+    --spacing-10: 2.5rem;
+    --spacing-11: 2.75rem;
+    --spacing-12: 3rem;
+    --spacing-14: 3.5rem;
+    --spacing-16: 4rem;
+    --spacing-18: 4.5rem;
+    --spacing-20: 5rem;
+    --spacing-24: 6rem;
+    --spacing-28: 7rem;
+    --spacing-32: 8rem;
+    --spacing-36: 9rem;
+    --spacing-40: 10rem;
+    --spacing-44: 11rem;
+    --spacing-48: 12rem;
+    --spacing-52: 13rem;
+    --spacing-56: 14rem;
+    --spacing-60: 15rem;
+    --spacing-64: 16rem;
+    --spacing-72: 18rem;
+    --spacing-80: 20rem;
+    --spacing-96: 24rem;
+    --container-max-width: 1600px;
+    --container-narrow-max-width: 1350px;
+    --container-gutter: var(--spacing-5);
+    --section-outer-spacing-block: var(--spacing-12);
+    --section-inner-max-spacing-block: var(--spacing-10);
+    --section-inner-spacing-inline: var(--container-gutter);
+    --section-stack-spacing-block: var(--spacing-8);
+    --grid-gutter: var(--spacing-5);
+    --product-list-row-gap: var(--spacing-8);
+    --product-list-column-gap: var(--grid-gutter);
+    --input-gap: var(--spacing-2);
+    --input-height: 2.625rem;
+    --input-padding-inline: var(--spacing-4);
+    --sticky-area-height: calc(var(--sticky-announcement-bar-enabled, 0) * var(--announcement-bar-height, 0px) + var(--sticky-header-enabled, 0) * var(--header-height, 0px));
+    --transform-logical-flip: 1;
+    --transform-origin-start: left;
+    --transform-origin-end: right;
+    --heading-font-family: "DIN Next", sans-serif;
+    --heading-font-weight: 700;
+    --heading-font-style: normal;
+    --heading-text-transform: normal;
+    --heading-letter-spacing: -0.02em;
+    --text-font-family: "DIN Next", sans-serif;
+    --text-font-weight: 400;
+    --text-font-style: normal;
+    --text-letter-spacing: 0.0em;
+    --text-h0: 3rem;
+    --text-h1: 2.5rem;
+    --text-h2: 2rem;
+    --text-h3: 1.5rem;
+    --text-h4: 1.375rem;
+    --text-h5: 1.125rem;
+    --text-h6: 1rem;
+    --text-xs: 0.6875rem;
+    --text-sm: 0.75rem;
+    --text-base: 0.875rem;
+    --text-lg: 1.125rem;
+    --accent: 0 109 255;
+    --text-primary: 26 26 26;
+    --background-primary: 255 255 255;
+    --dialog-background: 255 255 255;
+    --border-color: var(--text-color, var(--text-primary)) / 0.12;
+    --button-background-primary: 0 109 255;
+    --button-text-primary: 255 255 255;
+    --button-background-secondary: 0 109 255;
+    --button-text-secondary: 255 255 255;
+    --success-background: 224 244 232;
+    --success-text: 0 163 65;
+    --warning-background: 255 246 233;
+    --warning-text: 255 183 74;
+    --error-background: 254 231 231;
+    --error-text: 248 58 58;
+    --on-sale-text: 248 58 58;
+    --on-sale-badge-background: 248 58 58;
+    --on-sale-badge-text: 255 255 255;
+    --sold-out-badge-background: 255 255 255;
+    --sold-out-badge-text: 0 0 0;
+    --primary-badge-background: 0 109 255;
+    --primary-badge-text: 255 255 255;
+    --star-color: 255 183 74;
+    --product-card-background: 255 255 255;
+    --product-card-text: 26 26 26;
+    --header-background: 0 109 255;
+    --header-text: 255 255 255;
+    --footer-background: 0 109 255;
+    --footer-text: 255 255 255;
+    --rounded-xs: 0.25rem;
+    --rounded-sm: 0.375rem;
+    --rounded: 0.75rem;
+    --rounded-lg: 1.5rem;
+    --rounded-full: 9999px;
+    --rounded-button: 0.5rem;
+    --rounded-input: 0.5rem;
+    --shadow-sm: 0 2px 8px rgb(var(--text-primary) / 0.1);
+    --shadow: 0 5px 15px rgb(var(--text-primary) / 0.1);
+    --shadow-md: 0 5px 30px rgb(var(--text-primary) / 0.1);
+    --shadow-block: 0px 18px 50px rgb(var(--text-primary) / 0.1);
+    --stagger-products-reveal-opacity: 0;
+    --cursor-close-svg-url: url(//cdn.shopify.com/s/files/1/0725/0195/2756/t/4/assets/cursor-close.svg?v=1471745…);
+    --cursor-zoom-in-svg-url: url(//cdn.shopify.com/s/files/1/0725/0195/2756/t/4/assets/cursor-zoom-in.svg?v=1549530…);
+    --cursor-zoom-out-svg-url: url(//cdn.shopify.com/s/files/1/0725/0195/2756/t/4/assets/cursor-zoom-out.svg?v=1615552…);
+    --checkmark-svg-url: url(//cdn.shopify.com/s/files/1/0725/0195/2756/t/4/assets/checkmark.svg?v=7755248…);
+}
+
+
+
+.section {
+  --context-section-spacing-block-start: var(--section-outer-spacing-block);
+  --context-section-spacing-block-end: var(--section-outer-spacing-block);
+  --context-section-spacing-inline: var(--container-gutter);
+  --calculated-section-spacing-block-start: var(--section-spacing-block-start, var(--section-spacing-block, var(--context-section-spacing-block-start)));
+  --calculated-section-spacing-block-end: var(--section-spacing-block-end, var(--section-spacing-block, var(--context-section-spacing-block-end)));
+  --calculated-section-spacing-inline: var(--section-spacing-inline, var(--context-section-spacing-inline));
+  --container-inner-width: min((100vw - var(--scrollbar-width, 0px))  - var(--calculated-section-spacing-inline, 0px) * 2, var(--container-max-width));
+  --container-outer-width: calc(((100vw - var(--scrollbar-width, 0px))  - var(--container-inner-width, 0px)) / 2);
+  --section-stack-spacing-inline: var(--section-inner-spacing-inline, 0px);
+  padding-inline-start: max(var(--calculated-section-spacing-inline), 50% - var(--container-max-width) / 2);
+  padding-inline-end: max(var(--calculated-section-spacing-inline), 50% - var(--container-max-width) / 2);
+}
+
+.section--tight {
+  --calculated-section-spacing-block-start: min(48px, var(--section-spacing-block-start, var(--section-spacing-block, var(--context-section-spacing-block-start))));
+  --calculated-section-spacing-block-end: min(48px, var(--section-spacing-block-end, var(--section-spacing-block, var(--context-section-spacing-block-end))));
+  --calculated-section-spacing-inline: min(48px, var(--section-spacing-inline, var(--context-section-spacing-inline)));
+}
+
+.section--narrow {
+  --container-max-width: var(--container-narrow-max-width);
+}
+
+.section {
+  padding-block-start: calc(var(--background-differs-from-previous) * var(--calculated-section-spacing-block-start));
+  padding-block-end: var(--calculated-section-spacing-block-end);
+}
+
+@media screen and (min-width: 700px) {
+  .section--tight {
+    --calculated-section-spacing-block-start: min(48px, var(--section-spacing-block-start, var(--section-spacing-block, var(--context-section-spacing-block-start, 0px))));
+    --calculated-section-spacing-block-end: min(48px, var(--section-spacing-block-end, var(--section-spacing-block, var(--context-section-spacing-block-end, 0px))));
+  }
+
+  .section-boxed {
+    --context-section-spacing-block-start: min(var(--section-inner-max-spacing-block, var(--section-outer-spacing-block)));
+    --context-section-spacing-block-end: min(var(--section-inner-max-spacing-block, var(--section-outer-spacing-block)));
+    --context-section-spacing-inline: var(--section-inner-spacing-inline);
+    --container-inner-width: calc(var(--container-max-width)  - var(--container-outer-width) * 2);
+    --container-outer-width: var(--calculated-section-spacing-inline);
+    border-radius: var(--rounded-lg);
+    box-shadow: var(--shadow-block);
+    margin-block-start: calc(var(--background-differs-from-previous) * var(--section-outer-spacing-block-start, var(--section-outer-spacing-block)));
+    margin-block-end: var(--section-outer-spacin-block-end, var(--section-outer-spacing-block));
+    margin-inline-start: max(var(--container-gutter), 50% - var(--container-max-width) / 2);
+    margin-inline-end: max(var(--container-gutter), 50% - var(--container-max-width) / 2);
+    padding-block-start: var(--calculated-section-spacing-block-start);
+    padding-inline-start: var(--calculated-section-spacing-inline);
+    padding-inline-end: var(--calculated-section-spacing-inline);
+  }
+
+  .shopify-section:first-child {
+    --section-outer-spacing-block-start: 24px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .section--tight {
+    --calculated-section-spacing-block-start: min(64px, var(--section-spacing-block-start, var(--section-spacing-block, var(--context-section-spacing-block-start, 0px))));
+    --calculated-section-spacing-block-end: min(64px, var(--section-spacing-block-end, var(--section-spacing-block, var(--context-section-spacing-block-end, 0px))));
+  }
+}
+
+.section-header {
+  gap: var(--spacing-4);
+  justify-items: start;
+  display: grid;
+}
+
+@media screen and (min-width: 1150px) {
+  .section-header {
+    grid-template-columns: 700px;
+    justify-content: space-between;
+    align-items: end;
+  }
+
+  .section-header > .text-with-icon {
+    grid-column-start: 2;
+  }
+}
+
+.section-stack {
+  gap: var(--section-stack-spacing-block, 0px) var(--section-stack-spacing-inline, 0px);
+  grid-auto-columns: minmax(0, 1fr);
+  display: grid;
+}
+
+@media screen and (min-width: 1150px) {
+  .section-stack--horizontal {
+    justify-content: center;
+    display: flex;
+  }
+
+  .section-stack--center {
+    justify-items: center;
+  }
+
+  .section-stack--reverse {
+    flex-direction: row-reverse;
+  }
+
+  .section-stack__intro {
+    width: var(--section-stack-intro, 50%);
+  }
+
+  .section-stack__main {
+    width: var(--section-stack-main, 50%);
+  }
+}
+
+
+
+.scroll-area {
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  overflow: auto hidden;
+}
+
+.scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
+
+.multi-column {
+  --multi-column-list-column-max-gap: var(--grid-gutter);
+  --multi-column-list-row-min-gap: var(--grid-gutter);
+  --multi-column-item-gap: var(--spacing-6);
+  grid: var(--multi-column-grid);
+  gap: max(var(--multi-column-list-gap), var(--multi-column-list-row-min-gap)) min(var(--multi-column-list-column-max-gap), var(--multi-column-list-gap));
+  display: grid;
+}
+
+.multi-column__item {
+  align-content: start;
+  gap: var(--multi-column-item-gap);
+  grid-template-columns: minmax(0, 1fr);
+  display: grid;
+}
+
+@media screen and (min-width: 700px) {
+  .multi-column {
+    --multi-column-list-column-max-gap: var(--spacing-16);
+    grid: auto / auto-flow 38vw;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .multi-column {
+    --multi-column-list-row-min-gap: var(--spacing-16);
+    grid: auto / repeat(12, minmax(0, 1fr));
+  }
+
+  .multi-column__item {
+    grid-column: var(--multi-column-item-column-count);
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .multi-column {
+    --multi-column-list-column-max-gap: var(--multi-column-list-gap);
+  }
+}
+
+.multiple-images-with-text {
+  grid-template-columns: var(--multiple-images-with-text-grid-template-columns, none);
+  gap: var(--section-stack-spacing-block) var(--multiple-images-with-text-column-gap, 0px);
+  max-width: var(--multiple-images-with-text-max-width);
+  isolation: isolate;
+  justify-content: center;
+  place-items: center;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  display: grid;
+}
+
+.multiple-images-with-text__content-with-nav {
+  row-gap: var(--spacing-8);
+  text-align: var(--multiple-images-with-text-alignment, center);
+  justify-items: var(--multiple-images-with-text-alignment, center);
+  justify-self: start;
+  width: 100%;
+  max-width: 600px;
+  display: grid;
+}
+
+.multiple-images-with-text__image-list[layout="stacked"], .multiple-images-with-text__content-list {
+  place-items: center;
+  width: 100%;
+  display: grid;
+}
+
+:is(.multiple-images-with-text__image-list[layout="stacked"], .multiple-images-with-text__content-list) > * {
+  grid-area: 1 / -1;
+  width: 100%;
+}
+
+.multiple-images-with-text__image-list {
+  grid-template: var(--multiple-images-with-text-images-grid-template, none);
+  align-items: var(--multiple-images-with-text-images-alignment, center);
+  width: 100%;
+  display: grid;
+}
+
+.multiple-images-with-text__image-list > img {
+  max-width: var(--multiple-images-with-text-image-max-width, 390px);
+  will-change: transform;
+  outline: 1px solid #0000;
+  width: 100%;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+}
+
+.multiple-images-with-text__image-list:not([layout="stacked"]) > img:first-child {
+  grid-area: 1 / 2 / -1;
+  margin-block-start: var(--multiple-images-with-text-main-image-offset, 0px);
+}
+
+.multiple-images-with-text__content-list {
+  place-items: end start;
+}
+
+.multiple-images-with-text__image-list[layout="stacked"] {
+  --multiple-images-with-text-image-max-width: 520px;
+}
+
+.multiple-images-with-text__image-list[layout="collage"] {
+  gap: var(--grid-gutter);
+}
+
+@media screen and (max-width: 699px) {
+  .multiple-images-with-text__content-with-nav .circle-button {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .multiple-images-with-text__content-with-nav {
+    row-gap: var(--spacing-12);
+  }
+}
+
+@media screen and (min-width: 1150px) {
+  .multiple-images-with-text {
+    --multiple-images-with-text-image-max-width: 500px;
+  }
+}
+
+
+
+.bleed {
+  scroll-padding-inline: var(--container-outer-width);
+  margin-inline-start: calc(-1 * var(--container-outer-width));
+  margin-inline-end: calc(-1 * var(--container-outer-width));
+  padding-inline-start: var(--container-outer-width);
+  padding-inline-end: var(--container-outer-width);
+  display: grid;
+}
+
+.full-bleed {
+  margin-inline-start: calc(-1 * var(--container-outer-width));
+  margin-inline-end: calc(-1 * var(--container-outer-width));
+  display: grid;
+}
