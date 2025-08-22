@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>左随页滚，右侧粘性，切节一起走</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, Arial; }
+
+  /* 每一节：父级不能有 overflow:hidden/auto，否则 sticky 失效 */
+  .section {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    border-bottom: 1px solid #eee;
+    /* section 的高度由左侧内容自然撑开（左侧更高） */
+    background: #f8f9fb;
+  }
+
+  .left {
+    flex: 1 1 auto;
+    min-width: 0;
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+
+  /* 右侧在本节内“吸附”在视口顶部 */
+  .right {
+    position: sticky;
+    top: 0;                 /* 需要距离顶部多少就改这里 */
+    flex: 0 0 320px;        /* 或用 30% 等宽度 */
+    height: 100vh;          /* 右侧固定视口高度，视觉上是“固定的” */
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    align-self: flex-start; /* 避免被拉伸 */
+  }
+
+  /* 演示：让左侧内容比右侧高很多 */
+  .tall {
+    height: 500vh;          /* 模拟左侧远高于一屏（约右侧的 5 倍） */
+    background: linear-gradient(#fafafa, #e9f0ff);
+    border-radius: 8px;
+    padding: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .section { flex-direction: column; }
+    .right { position: static; height: auto; flex-basis: auto; }
+  }
+</style>
+</head>
+<body>
+
+<section class="section">
+  <div class="left">
+    <div class="tall">
+      <h2>第 1 节 · 左侧长内容</h2>
+      <p>这里放列表/图文…（高度远超 1 屏）。</p>
+      <p>页面整体滚动时，右侧固定在视口内。</p>
+    </div>
+  </div>
+  <aside class="right">
+    <h3>第 1 节 · 右侧固定</h3>
+    <p>直到本节结束（到下一节）才一起被“推走”。</p>
+  </aside>
+</section>
+
+<section class="section">
+  <div class="left">
+    <div class="tall">
+      <h2>第 2 节 · 左侧长内容</h2>
+      <p>进入本节后，右侧重新粘在顶部。</p>
+    </div>
+  </div>
+  <aside class="right">
+    <h3>第 2 节 · 右侧固定</h3>
+  </aside>
+</section>
+
+</body>
+</html>
