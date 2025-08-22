@@ -1,9 +1,145 @@
     header {
         position: sticky;
         top: 0;
-        background-color: #fff;
+        /* background-color: #fff; */
         z-index: 10;
+        display: flex;
+        align-items: normal;
+
+        .top_menu_menu-btn {
+            margin-right: 15px;
+            color: white;
+            display: flex;
+            align-items: center;
+
+            background: none;
+            border: none;
+            font: inherit;
+            cursor: pointer;
+            outline: none;
+
+            span {
+                font-size: 20px;
+            }
+        }
     }
+
+
+
+
+
+
+.top_menu_drawer{
+    position: fixed;
+    top: 0; bottom: 0; left: 0; right: auto;
+    width: 280px;
+    background: #fff;
+    box-shadow: 2px 0 18px rgba(0,0,0,.18);
+    transform: translate3d(-110%, 0, 0);
+    transition: transform .28s cubic-bezier(.2,.6,.2,1), opacity .28s;
+    z-index: 1002;
+    padding: 16px;
+    overflow-y: auto;
+    will-change: transform;
+    border-radius: 0;
+    opacity: 0;
+
+
+    .top_menu_drawer_menus_block{
+        display: flex;
+        flex-direction: column;
+        align-items: self-start;
+
+        .top_menu_drawer_menus_block_close{
+            margin-top: 10px;
+            margin-left: 5px;
+            span{
+                font-size: 40px;
+            }
+        }
+
+        .top_menu_drawer_menus_list{
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            margin-left: 10px;
+
+            .top_menu_drawer_menus_list_item{
+                font-size: 24px;
+                font-weight: bold;
+                color: #333;
+                margin-bottom: 10px;
+            }
+        }
+    }
+  }
+
+  .top_menu_overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .28s linear;
+    z-index: 1000;
+  }
+
+  .top_menu_is-open .top_menu_drawer{
+    transform: translate3d(0,0,0);
+    opacity: 1;
+  }
+  .top_menu_is-open .top_menu_overlay{
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .top_menu_drawer, .top_menu_overlay{ transition: none !important; }
+  }
+
+  @media (min-width: 768px){
+    .top_menu_drawer{
+      top: 40px;
+      bottom: 40px;
+      left: 40px;
+      width: 320px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 8px 12px 32px rgba(0,0,0,.18);
+      transform: translate3d(calc(-100% - 40px), 0, 0);
+      opacity: 0;
+    }
+    .top_menu_is-open .top_menu_drawer{
+      transform: translate3d(0,0,0);
+      opacity: 1;
+    }
+  }
+
+    @media (max-width: 768px){
+    .top_menu_drawer{
+      top: 10px;
+      bottom: 10px;
+      left: 10px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 8px 12px 32px rgba(0,0,0,.18);
+      transform: translate3d(calc(-100% - 40px), 0, 0);
+      opacity: 0;
+    }
+    .top_menu_is-open .top_menu_drawer{
+      transform: translate3d(0,0,0);
+      opacity: 1;
+    }
+  }
+
+  body.top_menu_no-scroll{ overflow: hidden; }
+
+
+
+
+
+
+
 
     .gallery {
         display: flex;
@@ -16,7 +152,7 @@
 
 
 
-    /* 隐藏滚动条 - Chrome / Safari / Edge */
+    /* hidden bar - Chrome / Safari / Edge */
     .gallery .thumbs::-webkit-scrollbar {
         display: none;
     }
@@ -29,8 +165,13 @@
     }
 
     .gallery .thumbs .item.active {
-        border-color: #333;
+        /* border-color: #333; */
+        filter: brightness(40%);
+        /* 让整体变暗，看起来像加了蒙层 */
     }
+
+
+
 
 
     .p_info_top {
@@ -75,7 +216,7 @@
 
 
 
-    /* Web端（缩略图竖排 + 大图右侧） */
+    /* Web */
     @media (min-width: 768px) {
         .p_info_top_group {
             width: 90%;
@@ -87,35 +228,60 @@
 
 
         .gallery {
-            flex-direction: row-reverse;
-            justify-content: space-between;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             margin-top: 30px;
             width: 50%;
-        }
 
-        .gallery .main-carousel {
-            width: 45%;
-        }
-
-        .gallery .thumbs {
-            flex-direction: column;
-            width: 100px;
-            max-height: 30vw;
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
-
-        .gallery .main-carousel .item {
-            width: 100%;
+            position: sticky;
+            top: 8vw;
             height: 100%;
         }
 
+        .gallery .main-carousel {
+            width: 80%;
+
+        }
+
+
+
+
+
+
+        .gallery .thumbs {
+            flex-direction: row;
+            flex-wrap: wrap;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .gallery .thumbs {
+            display: flex;
+            gap: 0px;
+            overflow-x: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .gallery .thumbs .item {
+            width: 60px;
+            height: 70px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            flex-shrink: 0;
+            margin-left: 10px;
+        }
+
+
         .gallery .main-carousel .item img {
-            width: 30vw;
-            height: 30vw;
+            width: 34vw;
+            height: 34vw;
             object-fit: cover;
             border-radius: 10px;
-            margin-right: 10vw;
+            margin-right: 30vw;
         }
 
         .gallery .thumbs {
@@ -1032,6 +1198,13 @@
         align-items: center;
         margin-top: 30px;
 
+        #ask_form {
+            display: none;
+        }
+
+        #ask_form:checked~.reviews_section_question_form {
+            display: block;
+        }
 
         .reviews_section_star {
             color: #de7921;
@@ -1166,6 +1339,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            display: none;
 
             .question_form {
                 display: flex;
@@ -1212,6 +1386,8 @@
                         height: 40px;
                         font-weight: normal;
                         font-size: 16px;
+
+                        margin-top: 10px;
                     }
 
                     .question_form_submit_question {
@@ -1225,7 +1401,6 @@
                         height: 40px;
                         font-weight: normal;
                         font-size: 18px;
-                        margin-top: 10px;
                         border: 0;
                     }
 

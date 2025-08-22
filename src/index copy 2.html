@@ -1,86 +1,160 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>左随页滚，右侧粘性，切节一起走</title>
+<title>Drawer Menu (JS scroll lock + animation)</title>
 <style>
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: system-ui, Arial; }
+  body { margin: 0; font-family: system-ui, -apple-system, Arial, sans-serif; }
 
-  /* 每一节：父级不能有 overflow:hidden/auto，否则 sticky 失效 */
-  .section {
-    display: flex;
-    gap: 16px;
-    padding: 16px;
-    border-bottom: 1px solid #eee;
-    /* section 的高度由左侧内容自然撑开（左侧更高） */
-    background: #f8f9fb;
-  }
-
-  .left {
-    flex: 1 1 auto;
-    min-width: 0;
-    background: #fff;
-    border-radius: 12px;
-    padding: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.06);
-  }
-
-  /* 右侧在本节内“吸附”在视口顶部 */
-  .right {
-    position: sticky;
-    top: 0;                 /* 需要距离顶部多少就改这里 */
-    flex: 0 0 320px;        /* 或用 30% 等宽度 */
-    height: 100vh;          /* 右侧固定视口高度，视觉上是“固定的” */
-    background: #fff;
-    border-radius: 12px;
-    padding: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.06);
-    align-self: flex-start; /* 避免被拉伸 */
-  }
-
-  /* 演示：让左侧内容比右侧高很多 */
-  .tall {
-    height: 500vh;          /* 模拟左侧远高于一屏（约右侧的 5 倍） */
-    background: linear-gradient(#fafafa, #e9f0ff);
+  .top_menu_menu-btn{
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 1001;
+    padding: 8px 12px;
+    background: #111;
+    color: #fff;
     border-radius: 8px;
-    padding: 12px;
+    cursor: pointer;
+    user-select: none;
+    border: none;
   }
 
-  @media (max-width: 900px) {
-    .section { flex-direction: column; }
-    .right { position: static; height: auto; flex-basis: auto; }
+  body.top_menu_no-scroll{ overflow: hidden; }
+
+  .top_menu_drawer{
+    position: fixed;
+    top: 0; bottom: 0; left: 0; right: auto;
+    width: 280px;
+    background: #fff;
+    box-shadow: 2px 0 18px rgba(0,0,0,.18);
+    transform: translate3d(-110%, 0, 0);
+    transition: transform .28s cubic-bezier(.2,.6,.2,1), opacity .28s;
+    z-index: 1002;
+    padding: 16px;
+    overflow-y: auto;
+    will-change: transform;
+    border-radius: 0;
+    opacity: 0;
   }
+
+  .top_menu_overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .28s linear;
+    z-index: 1000;
+  }
+
+  .top_menu_is-open .top_menu_drawer{
+    transform: translate3d(0,0,0);
+    opacity: 1;
+  }
+  .top_menu_is-open .top_menu_overlay{
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .top_menu_drawer, .top_menu_overlay{ transition: none !important; }
+  }
+
+  @media (min-width: 768px){
+    .top_menu_drawer{
+      top: 40px;
+      bottom: 40px;
+      left: 40px;
+      width: 320px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 8px 12px 32px rgba(0,0,0,.18);
+      transform: translate3d(calc(-100% - 40px), 0, 0);
+      opacity: 0;
+    }
+    .top_menu_is-open .top_menu_drawer{
+      transform: translate3d(0,0,0);
+      opacity: 1;
+    }
+  }
+
+  main{ padding: 64px 16px 24px; line-height: 1.6; }
+  .card{ max-width: 720px; margin: 0 auto 16px; background: #f7f7f9; border-radius: 12px; padding: 16px; }
 </style>
 </head>
 <body>
 
-<section class="section">
-  <div class="left">
-    <div class="tall">
-      <h2>第 1 节 · 左侧长内容</h2>
-      <p>这里放列表/图文…（高度远超 1 屏）。</p>
-      <p>页面整体滚动时，右侧固定在视口内。</p>
-    </div>
-  </div>
-  <aside class="right">
-    <h3>第 1 节 · 右侧固定</h3>
-    <p>直到本节结束（到下一节）才一起被“推走”。</p>
-  </aside>
-</section>
+<button class="top_menu_menu-btn" id="top_menu_button" aria-controls="top_menu_drawer" aria-expanded="false">☰ Menu</button>
 
-<section class="section">
-  <div class="left">
-    <div class="tall">
-      <h2>第 2 节 · 左侧长内容</h2>
-      <p>进入本节后，右侧重新粘在顶部。</p>
-    </div>
-  </div>
-  <aside class="right">
-    <h3>第 2 节 · 右侧固定</h3>
-  </aside>
-</section>
+<div class="top_menu_drawer-wrap" id="top_menu_drawerWrap">
+  <nav id="top_menu_drawer" class="top_menu_drawer" aria-label="Side Menu" tabindex="-1">
+    <h3>Navigation</h3>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Category</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </nav>
+  <div class="top_menu_overlay" id="top_menu_overlay" aria-hidden="true"></div>
+</div>
+
+<main>
+  <div class="card">Content Area 1</div>
+  <div class="card">Content Area 2</div>
+  <div class="card">Content Area 3</div>
+  <div class="card">Scroll to test…</div>
+</main>
+
+<script>
+  const btn = document.getElementById('top_menu_button');
+  const drawer = document.getElementById('top_menu_drawer');
+  const overlay = document.getElementById('top_menu_overlay');
+  const wrap = document.getElementById('top_menu_drawerWrap');
+  let lastFocus = null;
+
+  function openDrawer() {
+    lastFocus = document.activeElement;
+    document.body.classList.add('top_menu_no-scroll');
+    wrap.classList.add('top_menu_is-open');
+    btn.setAttribute('aria-expanded', 'true');
+    requestAnimationFrame(() => drawer.focus());
+  }
+
+  function closeDrawer() {
+    wrap.classList.remove('top_menu_is-open');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('top_menu_no-scroll');
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  btn.addEventListener('click', () => {
+    const open = wrap.classList.contains('top_menu_is-open');
+    open ? closeDrawer() : openDrawer();
+  });
+
+  overlay.addEventListener('click', closeDrawer);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && wrap.classList.contains('top_menu_is-open')) closeDrawer();
+  });
+
+  drawer.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    const focusables = drawer.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  });
+</script>
 
 </body>
 </html>

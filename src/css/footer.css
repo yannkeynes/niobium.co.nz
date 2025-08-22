@@ -49,6 +49,9 @@
         align-items: center;
         padding-left: 2%;
         padding-right: 2%;
+        /* position: sticky;
+        top: 0;
+        z-index: 11; */
 
         .top_gift_main {
             width: 80%;
@@ -159,7 +162,7 @@
                 letter-spacing: .05em;
 
                 .top_gift_main_l_t {
-                                        min-width: 260px;
+                    min-width: 260px;
                 }
 
                 #top_gift_main_l_f {
@@ -462,7 +465,7 @@
 
         .footer_payment_icons {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
         }
 
         .footer_copyright {
